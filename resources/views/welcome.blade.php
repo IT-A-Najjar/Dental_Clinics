@@ -37,7 +37,7 @@
             @endif
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <a href="#" >حجز</a>
+                <a href="{{route('sick.create')}}" >حجز</a>
             </div>
         </div>
     </body>

@@ -8,11 +8,6 @@ use function GuzzleHttp\Promise\all;
 
 class IllnessController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
     public function index()
     {
 
@@ -20,22 +15,13 @@ class IllnessController extends Controller
 //        return illness::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('Illnesses.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -47,48 +33,37 @@ class IllnessController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\illness  $illness
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(illness $illness)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\illness  $illness
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(illness $illness)
+
+    public function edit($id)
     {
-        //
+        return view('Illnesses.edit',['illness'=>illness::find($id)]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\illness  $illness
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, illness $illness)
+
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required'
+        ]);
+        $aa = illness::findOrFail($id);
+        $aa->name=$request->input('name');
+        $aa->save();
+
+        return redirect()->route('illnesses.index');
+//        return $id;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\illness  $illness
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(illness $illness)
+
+    public function destroy($id)
     {
-        //
+        $to_delete=illness::findorFail($id);
+        $to_delete->delete();
+        return redirect()->route('illnesses.index');
     }
 }

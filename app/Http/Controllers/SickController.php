@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\illness;
 use App\Models\Sick;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SickController extends Controller
@@ -14,7 +16,7 @@ class SickController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -24,7 +26,13 @@ class SickController extends Controller
      */
     public function create()
     {
-        //
+        $doctors=User::all();
+        $diseases=illness::all();
+        return view('sick.create',[
+            'doctors'=>$doctors,
+            'diseases'=>$diseases
+        ]);
+
     }
 
     /**
@@ -35,7 +43,17 @@ class SickController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $add=new Sick();
+        $add->full_name= strip_tags($request->input('full_name'));
+        $add->age= strip_tags($request->input('age'));
+        $add->phone_number= strip_tags($request->input('phone_number'));
+        $add->are_you_reviewer= strip_tags($request->input('are_you_reviewer'));
+        $add->illness_id= strip_tags($request->input('illness_id'));
+        $add->user_id= strip_tags($request->input('user_id'));
+        $add->save();
+
+        return redirect()->route('sick.index');
     }
 
     /**

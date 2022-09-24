@@ -14,6 +14,7 @@ use \App\Http\Controllers\IllnessController;
 |
 */
 Route::resource('illnesses',IllnessController::class);
+Route::resource('sick',SickController::class);
 Route::get('/', function () {
     return view('welcome');
 });

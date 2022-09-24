@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sicks', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
-            $table->boolean('are_you_free');
+            $table->integer('age');
             $table->string('phone_number')->default(null);
             $table->boolean('are_you_reviewer');
             $table->string('description')->default(null);
