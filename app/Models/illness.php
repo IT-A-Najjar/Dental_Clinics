@@ -12,4 +12,7 @@ class illness extends Model
     public function Sicks(){
         return $this->hasMany(Sick::class);
     }
+    public function preview(){
+        return $this->hasMany(preview::class);
+    }
 }

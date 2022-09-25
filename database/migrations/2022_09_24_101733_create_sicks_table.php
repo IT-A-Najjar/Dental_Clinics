@@ -18,10 +18,9 @@ return new class extends Migration
             $table->string('full_name');
             $table->integer('age');
             $table->string('phone_number')->default(null);
-            $table->boolean('are_you_reviewer');
             $table->string('description')->default(null);
-            $table->foreignId('illness_id')->constrained('illnesses')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('illness_id')->default(1)->constrained('illnesses')->cascadeOnDelete();
+            $table->foreignId('user_id')->default(1)->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }

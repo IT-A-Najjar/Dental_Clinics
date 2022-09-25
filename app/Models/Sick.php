@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Sick extends Model
 {
     use HasFactory;
-    protected $fillable =['name','age','phone_number','are_you_reviewer','illness_id','user_id','description'];
+    protected $fillable =['name','age','phone_number','illness_id','user_id','description'];
     public function illness(){
         return $this->belongsTo(illness::class);
     }
-    public function doctor(){
+    public function user(){
         return $this->belongsTo(User::class);
+    }
+    public function preview(){
+        return $this->hasMany(preview::class);
     }
 }
