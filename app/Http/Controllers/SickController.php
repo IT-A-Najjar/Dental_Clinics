@@ -13,55 +13,22 @@ class SickController extends Controller
 
     public function index()
     {
-        $sicks=Sick::where('user_id',auth()->user()->id)->get();
+        if(auth()->user()->is_admin){
+            $sicks=Sick::all();
+        }
+        else{
+            $sicks=Sick::where('user_id',auth()->user()->id)->get();
+        }
         return view('sick.index',[
             'sicks'=>$sicks
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $doctors=User::all();
-        $diseases=illness::all();
-        return view('sick.create',[
-            'doctors'=>$doctors,
-            'diseases'=>$diseases
-        ]);
 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'full_name'=>'required',
-            'age'=>'required|integer',
-            'phone_number'=>'required',
-
-        ]);
-
-        $add=new Sick();
-        $add->full_name= strip_tags($request->input('full_name'));
-        $add->age= strip_tags($request->input('age'));
-        $add->phone_number= strip_tags($request->input('phone_number'));
-        $add->illness_id= 1;
-        $add->user_id=2;
-        $add->description= '00';
-        $add->save();
-
-        return view('sick.ok');
-//        return $request;
-    }
 
 
     public function show($id)
@@ -97,10 +64,12 @@ class SickController extends Controller
         $to_update->age= strip_tags($request->input('age'));
         $to_update->phone_number= strip_tags($request->input('phone_number'));
         $to_update->description= strip_tags($request->input('description'));
-//        $to_update->are_you_reviewer=strip_tags($request->input('are_you_reviewer'));
+        $to_update->user_id= strip_tags($request->input('user_id'));
+        $to_update->illness_id= strip_tags($request->input('illness_id'));
         $to_update->save();
 
         return redirect()->route('sick.show',$id);
+//        return $request;
     }
 
     /**

@@ -1,7 +1,13 @@
-<head>
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-</head>
+
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
+</x-app-layout>
+@extends('layouts.guest')
+@section('componant')
 <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
     <form action={{route('sick.update',$data->id ) }} method="POST" >
         @csrf
@@ -26,14 +32,35 @@
             {{$message}}
             @enderror
         </h3>
+        <h4>اختر الطبيب</h4>
+        <select name="user_id">
+            <option value="{{$data->user->id}}">
+                {{$data->user->name}}
+            </option>
+        @foreach($doctors as $doctor )
+            @if($doctor->id!=$data->user->id)
+        <option value="{{$doctor->id}}">
+            {{$doctor->name}}
+        </option>
+                @endif
+        @endforeach
+        </select>
+        <h4>اختر المرض </h4>
+        <select name="illness_id">
+            <option value="{{$data->illness->id}}">
+                {{$data->illness->name}}
+            </option>
+            @foreach($diseases as $disease )
+                @if($disease->id!=$data->illness->id)
+                    <option value="{{$disease->id}}">
+                        {{$disease->name}}
+                    </option>
+                @endif
+            @endforeach
+        </select>
 
-        <textarea name="description"></textarea>
-        <h3>
-            @error('description')
-            {{$message}}
-            @enderror
-        </h3>
         <input type="submit" value="submit"   >
 
     </form>
 </div>
+@endsection

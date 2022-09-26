@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\preview;
+use App\Models\Sick;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PreviewController extends Controller
@@ -17,14 +19,12 @@ class PreviewController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $data=Sick::where('user_id',auth()->user()->id)->get();
+        return view('preview.create',[
+            'data'=>$data
+        ]);
     }
 
     /**
@@ -35,7 +35,16 @@ class PreviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+           'sick_id'=>'required|integer',
+            'description'=>'required'
+        ]);
+        preview::create([
+            'sick_id'=> strip_tags($request->input('sick_id')),
+            'description'=>strip_tags($request->input('description')),
+            'illness_id'=>Sick::find($request->input('sick_id'))->illness->id
+        ]);
+        return redirect()->route('dashboard');
     }
 
     /**
