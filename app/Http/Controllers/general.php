@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\illness;
 use App\Models\Sick;
 use App\Models\User;
+use App\Notifications\newpreview;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 
 class general extends Controller
 {
@@ -47,6 +49,23 @@ class general extends Controller
         $add->description= '00';
         $add->save();
 
+        
+        if(auth()->user()){
+            if(auth()->user()->is_admin){
+                $users=User::find($add->user_id);
+            }else{
+                $users=User::where('is_admin',1)->get();
+            }
+           
+            $user_create=auth()->user()->name;
+        }else{
+            $user_create=$users->name;
+        }
+
+        \Illuminate\Support\Facades\Notification::send($users,new newpreview($add->id,$user_create,$add->full_name));
+if(auth()->user()){
+    return redirect()->route('sick.index');
+}
         return view('sick.ok');
 //        return $request;
     }

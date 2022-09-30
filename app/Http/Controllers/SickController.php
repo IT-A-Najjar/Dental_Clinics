@@ -6,22 +6,39 @@ use App\Models\illness;
 use App\Models\preview;
 use App\Models\Sick;
 use App\Models\User;
+use App\Notifications\newpreview;
+use http\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SickController extends Controller
 {
 
     public function index()
     {
+        $users=User::find(auth()->user()->id);
+        $illnesses=illness::all();
+        foreach ($users->unreadNotifications as $notification){
+            $notification->markAsRead();
+        }
         if(auth()->user()->is_admin){
+//            if($request->felter==null){
+//                $sicks=Sick::all();
+//
+//            }else{
+//                $sicks=Sick::where('illness_id',$request->input('felter'))->get();
+//            }
             $sicks=Sick::all();
         }
         else{
             $sicks=Sick::where('user_id',auth()->user()->id)->get();
         }
+
         return view('sick.index',[
-            'sicks'=>$sicks
+            'sicks'=>$sicks,
+            'illnesses'=>$illnesses
         ]);
+//        return $request->felter;
     }
     /**
      * Show the form for creating a new resource.
@@ -35,10 +52,13 @@ class SickController extends Controller
     {
         $preview=preview::where('sick_id',$id)->get();
         $index=Sick::findorFail($id);
+//        $getID=DB::table('notification')->where('data->id',$id)->pluck('id');
+//        DB::table('notification')->where('id',$getID)->update(['read_at'=>now()]);
         return view('sick.show',[
             'index'=>$index,
             'previews'=>$preview
         ]);
+//        return $index->id;
     }
 
     public function edit($id)
@@ -67,6 +87,10 @@ class SickController extends Controller
         $to_update->user_id= strip_tags($request->input('user_id'));
         $to_update->illness_id= strip_tags($request->input('illness_id'));
         $to_update->save();
+
+        $users=User::find($to_update->user_id);
+        $user_create=auth()->user()->name;
+        \Illuminate\Support\Facades\Notification::send($users,new newpreview($to_update->id,$user_create,$to_update->full_name));
 
         return redirect()->route('sick.show',$id);
 //        return $request;

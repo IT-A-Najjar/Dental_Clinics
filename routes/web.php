@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\IllnessController as IllnessController;
+use App\Http\Controllers\PreviewController;
+use App\Http\Controllers\SickController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\SickController;
-use \App\Http\Controllers\IllnessController;
-use \App\Http\Controllers\PreviewController;
+use \App\Http\Controllers\general;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,19 +16,33 @@ use \App\Http\Controllers\PreviewController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('illnesses',IllnessController::class)->except('show')->middleware(['auth']);
-Route::resource('sick',SickController::class)->except(['store','create'])->middleware(['auth']);
-Route::resource('preview',PreviewController::class)->only(['create','store'])->middleware(['auth']);
-Route::get('sick.create',[\App\Http\Controllers\general::class,'create'])->name('sick.create');
-Route::get('sick.store',[\App\Http\Controllers\general::class,'store'])->name('sick.store');
+Route::get('sick.create',[general::class,'create'])->name('sick.create');
+Route::get('sick.store',[general::class,'store'])->name('sick.store');
+
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware(['auth'])->group(function(){
+    Route::resource('illnesses',IllnessController::class)->except('show');
+    Route::resource('sick',SickController::class)->except(['store','create']);
+    Route::resource('preview',PreviewController::class)->only(['create','store']);
+});
+Route::post('add_user',[\App\Http\Controllers\UserController::class,'add_user']);
+Route::get('/layout',function(){
+    return view('layout');
+})->middleware(['auth'])->name('layout');
 
+Route::get('/users',function(){
+    return view('users',['users'=>\App\Models\User::all()]);
+})->middleware(['auth','admin'])->name('users');
+
+ Route::get('/createuser',function(){
+     return view('createuser');
+ })->middleware(['auth','admin'])->name('createuser');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('layout');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
