@@ -1,4 +1,5 @@
-
+@extends('.layout')
+@section('componemt')
 <x-guest-layout>
 <x-auth-card>
         <x-slot name="logo">
@@ -46,12 +47,10 @@
             <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
-<input type="submit" value="submit">
-{{--            <x-primary-button class="ml-4">--}}
-{{--                {{ __('Register') }}--}}
-{{--            </x-primary-button>--}}
+            <input type="submit" value="submit">
         </div>
     </form>
 
 </x-auth-card>
 </x-guest-layout>
+@endsection
