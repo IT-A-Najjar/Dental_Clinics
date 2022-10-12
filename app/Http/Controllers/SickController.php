@@ -14,24 +14,31 @@ use Illuminate\Support\Facades\DB;
 class SickController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         $users=User::find(auth()->user()->id);
         $illnesses=illness::all();
-        foreach ($users->unreadNotifications as $notification){
-            $notification->markAsRead();
-        }
+//        foreach ($users->unreadNotifications as $notification){
+//            $notification->markAsRead();
+//        }
         if(auth()->user()->is_admin){
-//            if($request->felter==null){
-//                $sicks=Sick::all();
-//
-//            }else{
-//                $sicks=Sick::where('illness_id',$request->input('felter'))->get();
-//            }
-            $sicks=Sick::all();
+            if($request->filter==0){
+                $sicks=Sick::all();
+
+            }else{
+                $sicks=Sick::where('illness_id',$request->filter)->get();
+            }
+//            $sicks=Sick::all();
         }
         else{
-            $sicks=Sick::where('user_id',auth()->user()->id)->get();
+            if($request->filter==0){
+//                $sicks=Sick::all();
+                $sicks=Sick::where('user_id',auth()->user()->id)->get();
+
+            }else{
+                $sicks=Sick::where('illness_id',$request->filter)->where('user_id',auth()->user()->id)->get();
+
+            }
         }
 
         return view('sick.index',[

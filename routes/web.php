@@ -3,8 +3,10 @@
 use App\Http\Controllers\IllnessController as IllnessController;
 use App\Http\Controllers\PreviewController;
 use App\Http\Controllers\SickController;
+use App\Models\Sick;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\general;
+use \App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,7 @@ use \App\Http\Controllers\general;
 */
 Route::get('sick.create',[general::class,'create'])->name('sick.create');
 Route::get('sick.store',[general::class,'store'])->name('sick.store');
+//Route::post('users.update',[\App\Http\Controllers\UserController::class,'update']);
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,9 +29,13 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function(){
     Route::resource('illnesses',IllnessController::class)->except('show');
     Route::resource('sick',SickController::class)->except(['store','create']);
-    Route::resource('preview',PreviewController::class)->only(['create','store']);
+    Route::resource('preview',PreviewController::class);
+    Route::resource('users',UserController::class);
 });
+Route::get('preview.edit/{id}',[PreviewController::class,'edit']);
+Route::post('users.update/{id}',[UserController::class,'update']);
 Route::post('add_user',[\App\Http\Controllers\UserController::class,'add_user']);
+
 Route::get('/layout',function(){
     return view('layout');
 })->middleware(['auth'])->name('layout');
@@ -42,7 +49,7 @@ Route::get('/users',function(){
  })->middleware(['auth','admin'])->name('createuser');
 
 Route::get('/dashboard', function () {
-    return view('layout');
+    return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

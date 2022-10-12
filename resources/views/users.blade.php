@@ -1,22 +1,8 @@
 @extends('layout')
+@section('title')
+    الاطباء
+@endsection
 @section('componemt')
-{{--    @foreach($users as $user)--}}
-{{--    <h1>{{$user->name}}</h1>--}}
-{{--@endforeach--}}
-    <section class="home-slider owl-carousel">
-        <div class="slider-item bread-item" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
-            <div class="overlay"></div>
-            <div class="container" data-scrollax-parent="true">
-                <div class="row slider-text align-items-end">
-                    <div class="col-md-7 col-sm-12 ftco-animate mb-5">
-                        <p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"><span class="mr-2"><a href="index.html">Home</a></span> <span>Services</span></p>
-                        <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">Well Experienced Doctors</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="ftco-section">
         <div class="container">
             <div class="row justify-content-center mb-5 pb-5">
@@ -29,7 +15,7 @@
                 @foreach($users as $user)
                 <div class="col-lg-3 col-md-6 d-flex mb-sm-4 ftco-animate">
                     <div class="staff">
-                        <div class="img mb-4" style="background-image: url(images/person_5.jpg);"></div>
+                        <img class="img mb-4" src="{{asset('img/'.$user->photo)}}">
                         <div class="info text-center">
                             <h3><a href="#">{{$user->name}}</a></h3>
                             <span class="position">Dentist</span>
@@ -37,9 +23,14 @@
                                 <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
                                 <ul class="ftco-social">
                                     <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                                    <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                                    <li class="ftco-animate"><a href="{{route('users.edit',$user->id)}}">edit</a></li>
+                                    <li class="ftco-animate">
+                                        <form  action="{{route('users.destroy',$user->id)}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="submit" value="delete">
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

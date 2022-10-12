@@ -31,7 +31,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark" id="ftco-navbar">
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
         <a class="navbar-brand" href="/">العيادات <span>السنية</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,8 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 @if(auth()->user())
-                <li class="nav-item active"><a href="{{route('sick.create')}}" class="nav-link">اضافة مريض</a></li>
+                <li class="nav-item"><a href="{{route('dashboard')}}" class="nav-link"> البروفايل </a></li>
+                <li class="nav-item"><a href="{{route('sick.create')}}" class="nav-link">اضافة مريض</a></li>
                 <li class="nav-item"><a href="{{route('sick.index')}}" class="nav-link">عرض المرضى</a></li>
                 <li class="nav-item"><a href="{{route('preview.create')}}" class="nav-link">اضافة حالة</a></li>
                 @if(auth()->user()->is_admin)
@@ -50,37 +51,7 @@
                 <li class="nav-item"><a href="{{route('users')}}" class="nav-link">الاطباء</a></li>
                 <li class="nav-item"><a href="{{route('createuser')}}" class="nav-link">اضافة طبيب</a></li>
                 @endif
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-bell" ><img src="/img/run.png" class="w-50"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="head text-light bg-dark">
-                            <div class="row">
-                                <div class="col-lg-12 col-sm-12 col-12">
-                                    <span>Notifications ({{\Illuminate\Support\Facades\Auth::user()->unreadNotifications->count()}})</span>
-                                    @if(\Illuminate\Support\Facades\Auth::user()->unreadNotifications->count()!=0)
-                                        <a href="{{route('sick.index')}}" class="float-right text-light">read of all</a>
-                                    @endif
-                                </div>
-                        </li>
-                        @foreach(Auth::user()->unreadNotifications as $notification)
-                            <li class="notification-box">
-                                <div class="col-lg-8 col-sm-8 col-8">
-                                    <strong class="text-info">{{$notification->data['user_create']}}</strong>
-                                    <div>
-                                        <a href="{{route('sick.show',$notification->data['id_preview'])}}" style="color: #000000">ارسل اليك مريض جديد باسم: {{$notification->data['name']}}</a>
-                                    </div>
-                                    <small class="text-warning">{{$notification->created_at}}</small>
-                                </div>
-                            </li>
-                        @endforeach
-                        <li class="footer bg-dark text-center">
-                            <a href="" class="text-light">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item cta">
+                <li class="nav-item">
                     <form  method="POST" action="{{ route('logout') }}">
                         @csrf
                         <x-nav-link :href="route('logout')"
@@ -96,7 +67,18 @@
     </div>
 </nav>
 
-
+<section class="home-slider owl-carousel">
+    <div class="slider-item bread-item" style="background-image: url('images/bg_4.jpg');" data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container" data-scrollax-parent="true">
+            <div class="row slider-text align-items-end">
+                <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+                    <h1 class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">@yield('title')</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     <div class="font-sans text-gray-900 antialiased">
                     @yield('componemt')
     </div>

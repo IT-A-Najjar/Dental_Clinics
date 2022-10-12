@@ -1,31 +1,29 @@
-@extends('.layout')
+@extends('layout')
+@section('title')
+    اضافة مرض
+@endsection
 @section('componemt')
-{{--    <form action={{ route('illnesses.store')}} method="POST" >--}}
-{{--        @csrf--}}
-{{--        <input type="text" name="name"class="form-control"   >--}}
-{{--        <input type="submit" value="submit"   >--}}
-{{--    </form>--}}
 
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <img src="/img/icon.png">
-            </a>
-        </x-slot>
-        <form method="POST" action="{{ route('illnesses.store') }}">
+    <x-guest-layout>
+        <x-auth-card>
+            <x-slot name="logo">
+                <a href="/">
+                    <img src="/img/icon.png">
+                </a>
+            </x-slot>
 
-            @csrf
-            <div>
-                <x-input-label for="name" :value="__('اسم المرض')" />
+            <form method="POST" action="{{ route('illnesses.store') }}">
 
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            </div>
-                <input class="btn btn-primary" type="submit" value="submit">
+                @csrf
+                <div>
+                    <x-input-label for="name" :value="__('اسم المرض')" />
 
-        </form>
+                    <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                </div>
+                <input  class="btn btn-primary" type="submit" style="color: black" value="submit">
 
-    </x-auth-card>
-</x-guest-layout>
+            </form>
+        </x-auth-card>
+    </x-guest-layout>
 
 @endsection

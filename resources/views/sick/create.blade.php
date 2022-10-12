@@ -1,4 +1,7 @@
-@extends('.layout')
+@extends('layout')
+@section('title')
+    اضافة مريض جديد
+@endsection
 @section('componemt')
     <x-guest-layout>
 

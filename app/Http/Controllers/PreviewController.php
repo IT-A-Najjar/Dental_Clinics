@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\illness;
 use App\Models\preview;
 use App\Models\Sick;
 use App\Models\User;
@@ -58,15 +59,16 @@ class PreviewController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\preview  $preview
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(preview $preview)
+
+    public function edit($id,preview $preview)
     {
-        //
+
+        // $data=Sick::where('user_id',auth()->user()->id)->get();
+        $data=Sick::find($id);
+
+        return view('preview.create',[
+            'data'=>$data
+        ]);
     }
 
     /**

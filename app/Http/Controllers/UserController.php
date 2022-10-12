@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+//        return view('users.users',['users'=>User::all()]);
     }
 
     /**
@@ -35,12 +36,18 @@ class UserController extends Controller
      */
     public function add_user(Request $request)
     {
-        $user=new User();
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->password=bcrypt($request->passwoed);
+//        $user=new User();
+        $image = $request->file('img')->getClientOriginalName();
+        $path = $request->file('img')->storeAs('doctor',$image,'aa');
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+        $user->photo=$path;
         $user->save();
-        return redirect()->back();
+//        return redirect()->back();
+        return redirect()->route('users');
     }
 
     /**
@@ -54,37 +61,32 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        return view('users.edit',[
+            'data'=>User::findorFail($id),
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+        $user_update=User::findorFail($id);
+        $image_update = $request->file('img')->getClientOriginalName();
+        $path_update = $request->file('img')->storeAs('doctor',$image_update,'aa');
+        $user_update->name= strip_tags($request->input('name'));
+        $user_update->email= strip_tags($request->input('email'));
+        $user_update->password= strip_tags($request->input('password'));
+        $user_update->photo=$path_update;
+        $user_update->save();
+        return redirect()->route('dashboard');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $to_delet=User::findorFail($id);
+        $to_delet->delete();
+        return redirect()->route('users');
     }
 }

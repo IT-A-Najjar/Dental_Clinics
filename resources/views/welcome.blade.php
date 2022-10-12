@@ -31,7 +31,10 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="#">العيادات <span>السنية</span></a>
+        <h3><a class="navbar-brand" href="#">العيادات <span>السنية</span></a></h3>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
@@ -43,12 +46,12 @@
 <!-- END nav -->
 
 <section class="home-slider owl-carousel">
-    <div class="slider-item" style="background-image: url('images/img_2.jpg');">
+    <div class="slider-item" style="background-image: url('images/bg_4.jpg');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row slider-text align-items-center" data-scrollax-parent="true">
                 <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">موقع حجز المرضي في العيادات السنية</h1>
+                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">موقع حجز المرضى في العيادات السنية</h1>
                     <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">دليلك لتلقي العلاج المجاني في العيادات السنية باشراف نخبة من الاطباء المختصين وتقديم الاستشارات على مدار الساعة</p>
                     <p data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><a href="{{route('sick.create')}}" class="btn btn-primary px-4 py-3">حجز الان</a></p>
                 </div>
@@ -61,32 +64,32 @@
         <div class="container">
             <div class="row slider-text align-items-center" data-scrollax-parent="true">
                 <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">موقع حجز المرضي في العيادات السنية</h1>
-                    <p class="mb-4">دليلك لتلقي العلاج المجاني في العيادات السنية باشراف نخبة من الاطباء المختصين</p>
+                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">موقع حجز المرضى في العيادات السنية</h1>
+                    <p class="mb-4">دليلك لتلقي العلاج المجاني في العيادات السنية باشراف نخبة من الاطباء المختصين وتقديم الاستشارات على مدار الساعة</p>
                     <p><a href="{{route('sick.create')}}" class="btn btn-primary px-4 py-3">حجز الان</a></p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="slider-item" style="background-image: url('images/img_1.jpg');">
+    <div class="slider-item" style="background-image: url('images/bg_5.jpg');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row slider-text align-items-center" data-scrollax-parent="true">
                 <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">موقع حجز المرضي في العيادات السنية</h1>
-                    <p class="mb-4">دليلك لتلقي العلاج المجاني في العيادات السنية باشراف نخبة من الاطباء المختصين</p>
+                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">موقع حجز المرضى في العيادات السنية</h1>
+                    <p class="mb-4">دليلك لتلقي العلاج المجاني في العيادات السنية باشراف نخبة من الاطباء المختصين وتقديم الاستشارات على مدار الساعة</p>
                     <p><a href="{{route('sick.create')}}" class="btn btn-primary px-4 py-3">حجز الان</a></p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="slider-item" style="background-image: url('images/gallery-3.jpg');">
+    <div class="slider-item" style="background-image: url('images/bg_6.jpg');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row slider-text align-items-center" data-scrollax-parent="true">
                 <div class="col-md-6 col-sm-12 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">موقع حجز المرضي في العيادات السنية</h1>
-                    <p class="mb-4">دليلك لتلقي العلاج المجاني في العيادات السنية باشراف نخبة من الاطباء المختصين</p>
+                    <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">موقع حجز المرضى في العيادات السنية</h1>
+                    <p class="mb-4">دليلك لتلقي العلاج المجاني في العيادات السنية باشراف نخبة من الاطباء المختصين وتقديم الاستشارات على مدار الساعة</p>
                     <p><a href="{{route('sick.create')}}" class="btn btn-primary px-4 py-3">حجز الان</a></p>
                 </div>
             </div>
@@ -101,7 +104,7 @@
         <div class="row justify-content-center mb-5 pb-5">
             <div class="col-md-7 text-center heading-section ftco-animate">
                 <h2 class="mb-2">خدماتنا تبقيك مبتسماً</h2>
-                <p>جميع الخدمات التي يقدمها كلاب كلية الاسنان في الجامعة</p>
+                <p>جميع الخدمات التي يقدمها طلاب كلية الاسنان في الجامعة</p>
             </div>
         </div>
         <div class="container-wrap mt-5">
@@ -112,7 +115,7 @@
                     <div class="about-wrap">
                         <div class="heading-section heading-section-white mb-5 ftco-animate">
                             <h2 class="mb-2">الاستشارة المجانية</h2>
-                            <p>يمكنكم اخذ الاستشارات الصحيحة الكبية من اطباء مختصين وذلك لتخفيف العبء عليكم من الذهاب للطبيب العام</p>
+                            <p>يمكنكم اخذ الاستشارات الصحيحة الالطبية من اطباء مختصين وذلك لتخفيف العبء عليكم من الذهاب للطبيب العام</p>
                         </div>
                         <div class="list-services d-flex ftco-animate">
                             <div class="icon d-flex justify-content-center align-items-center">
@@ -239,7 +242,7 @@
 
 </section>
 
-<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
+<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_2.jpg);" data-stellar-background-ratio="0.5">
     <div class="container">
         <div class="row d-flex align-items-center">
             <div class="col-md-3 aside-stretch py-5">
@@ -358,7 +361,7 @@
                     <div class="img mb-4" style="background-image: url(images/person_8.jpg);"></div>
                     <div class="info text-center">
                         <span class="position">الطبيب</span>
-                        <h3><a href="teacher-single.html">محمد مجبل</a></h3>
+                        <h3><a href="#">محمد مجبل</a></h3>
                         <div class="text">
                             <p>دكتوراه في جراحة الوجه والفكين</p>
                             <ul class="ftco-social">
