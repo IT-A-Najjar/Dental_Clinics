@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{{--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">--}}
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
 
@@ -33,6 +34,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
+        <img src="img/icon.png" style="width: 75px">
         <a class="navbar-brand" href="/">العيادات <span>السنية</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
@@ -44,7 +46,6 @@
                 <li class="nav-item"><a href="{{route('dashboard')}}" class="nav-link"> البروفايل </a></li>
                 <li class="nav-item"><a href="{{route('sick.create')}}" class="nav-link">اضافة مريض</a></li>
                 <li class="nav-item"><a href="{{route('sick.index')}}" class="nav-link">عرض المرضى</a></li>
-                <li class="nav-item"><a href="{{route('preview.create')}}" class="nav-link">اضافة حالة</a></li>
                 @if(auth()->user()->is_admin)
                 <li class="nav-item"><a href="{{route('illnesses.create')}}" class="nav-link">اضافة مرض</a></li>
                 <li class="nav-item"><a href="{{route('illnesses.index')}}" class="nav-link">عرض الامراض</a></li>
@@ -68,7 +69,7 @@
 </nav>
 
 <section class="home-slider owl-carousel">
-    <div class="slider-item bread-item" style="background-image: url('images/bg_4.jpg');" data-stellar-background-ratio="0.5">
+    <div class="slider-item bread-item " style="background-image: url('images/Artboard_3.png');" data-stellar-background-ratio="0.2">
         <div class="overlay"></div>
         <div class="container" data-scrollax-parent="true">
             <div class="row slider-text align-items-end">
@@ -82,6 +83,8 @@
     <div class="font-sans text-gray-900 antialiased">
                     @yield('componemt')
     </div>
+
+<div id="ftco-loader" class="show fullscreen"><img class="circular" width="80px" height="80px" src="img/icon.png"></div>
 
 
 <script src="js/jquery.min.js"></script>

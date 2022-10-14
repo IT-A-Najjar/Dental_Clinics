@@ -4,7 +4,7 @@
         <x-auth-card>
             <x-slot name="logo">
                 <a href="/">
-                    <img src="/img/icon.png">
+                    <img style="width: 150px" src="/img/icon.png">
                 </a>
             </x-slot>
             <form method="POST" action={{url('users.update',$data->id)}} enctype="multipart/form-data" >
@@ -46,6 +46,19 @@
                     <x-text-input id="img" class="block mt-1 w-full" type="file" name="img" :value="old('email')"
                                   required/>
                 </div>
+                @if(auth()->user()->is_admin)
+                    <div class="mt-4">
+                        <x-input-label :value="__('Is Admin')"></x-input-label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="inlineCheckbox1" name="is_admin" value=0>
+                            <label class="form-check-label" for="inlineCheckbox1">NO</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" id="inlineCheckbox2" name="is_admin" value=1>
+                            <label class="form-check-label" for="inlineCheckbox2">YES</label>
+                        </div>
+                    </div>
+                @endif
 
                 <div class="flex items-center justify-end mt-4">
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">

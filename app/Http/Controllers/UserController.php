@@ -37,16 +37,20 @@ class UserController extends Controller
     public function add_user(Request $request)
     {
 //        $user=new User();
-        $image = $request->file('img')->getClientOriginalName();
-        $path = $request->file('img')->storeAs('doctor',$image,'aa');
+        if($request->img){
+            $image = $request->file('img')->getClientOriginalName();
+            $path = $request->file('img')->storeAs('doctor',$image,'aa');
+        }else{
+            $path='doctor/doctor.png';
+        }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'is_admin'=>$request->is_admin,
         ]);
         $user->photo=$path;
         $user->save();
-//        return redirect()->back();
         return redirect()->route('users');
     }
 

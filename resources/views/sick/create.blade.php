@@ -9,7 +9,7 @@
 
             <x-slot name="logo">
                 <a href="/">
-                    <img src="/img/icon.png">
+                    <img style="width: 150px" src="/img/icon.png">
                 </a>
             </x-slot>
             <form action="{{ route( 'sick.store' ) }}" method="EHAD">
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <x-input-label :value="__('رقم الهاتف')" />
+                    <x-input-label :value="__('رقم الهاتف(الوتساب)')" />
 
                     <x-text-input class="block mt-1 w-full" type="text" name="phone_number" required/>
                     <p>@error('phone_number')
@@ -74,10 +74,7 @@
                 </div>
                 @endif
                 <div class="flex items-center justify-end mt-4">
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="../">
-                        رجوع
-                    </a>
-                    <input class="btn btn-primary" type="submit" value="ارسال">
+                    <input class="btn btn-primary" type="submit" value="تاكيد الحجز">
                 </div>
             </form>
 

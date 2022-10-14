@@ -16,8 +16,10 @@ class SickController extends Controller
 
     public function index(Request $request)
     {
+
         $users=User::find(auth()->user()->id);
         $illnesses=illness::all();
+        $doctors=User::all();
 //        foreach ($users->unreadNotifications as $notification){
 //            $notification->markAsRead();
 //        }
@@ -28,7 +30,12 @@ class SickController extends Controller
             }else{
                 $sicks=Sick::where('illness_id',$request->filter)->get();
             }
-//            $sicks=Sick::all();
+            if($request->filter_doctor==0){
+                $sicks=Sick::all();
+
+            }else{
+                $sicks=Sick::where('user_id',$request->filter_doctor)->get();
+            }
         }
         else{
             if($request->filter==0){
@@ -43,7 +50,8 @@ class SickController extends Controller
 
         return view('sick.index',[
             'sicks'=>$sicks,
-            'illnesses'=>$illnesses
+            'illnesses'=>$illnesses,
+            'doctors'=>$doctors,
         ]);
 //        return $request->felter;
     }

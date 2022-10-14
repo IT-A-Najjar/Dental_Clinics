@@ -4,20 +4,18 @@
         <x-auth-card>
             <x-slot name="logo">
                 <a href="/">
-                    <img src="/img/icon.png">
+                    <img style="width: 150px" src="/img/icon.png">
                 </a>
             </x-slot>
             <form method="POST" action="{{ route('preview.store') }}">
-
                 @csrf
-                <!-- Name -->
                 <div>
-                    <x-input-label :value="__('Name')" />
+{{--                    <x-input-label :value="__('{{$data->full_name}}')" />--}}
+                        <p>{{$data->full_name}}</p>
+{{--                    <select name="sick_id" class="form-select" aria-label="Default select example">--}}
+{{--                        <option value="{{$data->id}}">{{$data->full_name}}</option>--}}
 
-                    <select name="sick_id" class="form-select" aria-label="Default select example">
-                        <option value="{{$data->id}}">{{$data->full_name}}</option>
-
-                    </select>
+{{--                    </select>--}}
                 </div>
 
                 <!-- Email Address -->

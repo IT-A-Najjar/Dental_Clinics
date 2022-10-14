@@ -6,8 +6,7 @@
     <section class="ftco-section">
         <div class="container">
             <div class="row d-md-flex">
-                <div class="col-md-6 ftco-animate img about-image order-md-last" style="background-image: url({{asset('img/'.auth()->user()->photo)}})">
-                </div>
+                <div class="col-md-6 ftco-animate img about-image order-md-last " style="background-image: url({{asset('img/'.auth()->user()->photo)}})"></div>
                 <div class="col-md-6 ftco-animate pr-md-5 order-md-first">
                     <div class="row">
                         <div class="col-md-12 nav-link-wrap mb-5">
@@ -23,7 +22,11 @@
                                     <div>
                                         <h2 class="mb-4">الملف الشخصي</h2>
                                         <p><span>gmail: </span>{{auth()->user()->email}}</p>
-                                        <p><span>password: </span>{{Hash::make(auth()->user()->password)}}</p>
+                                        @if(auth()->user()->is_admin)
+                                            <p><span>State: </span>Admin</p>
+                                        @else
+                                            <p><span>State: </span>User</p>
+                                        @endif
                                         <p><span>year: </span>.........</p>
                                         <p><span>about: </span>........</p>
                                         <a class="btn btn-primary stretched-link" href={{route('users.edit',auth()->user()->id)}}>edit</a>

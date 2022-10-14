@@ -16,12 +16,12 @@
                             <div class="text">
                                 <p>التعديل على المرض</p>
                                 <ul class="ftco-social">
-                                    <li class="ftco-animate"><a href="{{route('illnesses.edit',$a->id)}}">edit</a></li>
+                                    <li class="ftco-animate"><a class="btn btn-primary stretched-link" href="{{route('illnesses.edit',$a->id)}}">edit</a></li>
                                     <li class="ftco-animate">
                                         <form action="{{route('illnesses.destroy',$a->id)}}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <input class="delete-btn" type="submit" value="delete">
+                                            <input class="btn btn-primary stretched-link" type="submit" value="delete">
                                         </form>
                                     </li>
                                 </ul>

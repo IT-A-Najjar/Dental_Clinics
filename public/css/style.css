@@ -210,6 +210,7 @@ select,
 optgroup,
 textarea {
   margin: 0;
+    text-align: center;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit; }
@@ -326,7 +327,7 @@ h5, .h5 {
 h6, .h6 {
   font-size: 1rem; }
 span{
-    color: #78d5ef;
+    color: #195B71;
 }
 
 .lead {
@@ -7590,7 +7591,7 @@ h1, h2, h3, h4, h5,
         height: 400px !important; }
         @media (max-width: 1199.98px) {
           .owl-carousel.home-slider .slider-item.bread-item {
-            background-position: center center !important; } }
+            background-position: right center !important; } }
         .owl-carousel.home-slider .slider-item.bread-item .overlay {
           background: #2f89fc;
           background: -moz-linear-gradient(-45deg, #2f89fc 0%, #2cbcbc 100%);
@@ -7970,6 +7971,49 @@ h1, h2, h3, h4, h5,
       .ftco-quote .un-styled li span {
         color: #fff;
         margin-right: 10px; }
+.staff1{
+    width: 100%;
+    display: block;
+    padding: 25px;
+    /*-webkit-box-shadow: 0px 3px 66px -24px rgba(0, 0, 0, 0.2);*/
+    /*-moz-box-shadow: 0px 3px 66px -24px rgba(0, 0, 0, 0.2);*/
+    /*box-shadow: 0px 3px 66px -24px rgba(0, 0, 0, 0.2);*/
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease; }
+@media (max-width: 767.98px) {
+    .staff1 {
+        margin-bottom: 30px; } }
+.staff1 .info {
+    width: 100%; }
+.staff1 .info span.position {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #2f89fc; }
+.staff1 .text .ftco-social {
+    padding: 0; }
+.staff1 .text .ftco-social li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 5px; }
+.staff1 .text .ftco-social li a img{
+    width: 30px;
+    margin: 0.5rem;
+    transition: 0.4s;
+}
+.staff1 .text .ftco-social li a img:hover{
+    width: 40px;
+    margin: 0.19rem;
+}
+
 
 .staff {
   width: 100%;
@@ -9286,15 +9330,10 @@ textarea.form-control {
   opacity: 1; }
 
 #ftco-loader .circular {
-  -webkit-animation: loader-rotate 2s linear infinite;
-  animation: loader-rotate 2s linear infinite;
   position: absolute;
   left: calc(50% - 24px);
   top: calc(50% - 24px);
-  display: block;
-  -webkit-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  transform: rotate(0deg); }
+  display: block;}
 
 #ftco-loader .path {
   stroke-dasharray: 1, 200;

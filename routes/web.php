@@ -23,7 +23,11 @@ Route::get('sick.store',[general::class,'store'])->name('sick.store');
 //Route::post('users.update',[\App\Http\Controllers\UserController::class,'update']);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome',[
+        'preview'=>\App\Models\preview::all(),
+        'doctor'=>\App\Models\User::all(),
+        'sick'=>Sick::all(),
+    ]);
 });
 
 Route::middleware(['auth'])->group(function(){
